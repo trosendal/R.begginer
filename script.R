@@ -505,3 +505,51 @@ names<- list('Antoinette', 'Mary','Duncan','Obalaya','Jojo')
 nchar('Jim')
 nchar('Bob')
 lapply(names,nchar)
+
+#10. Flow Control
+
+#10.1 - Looping
+#10.1.1 - For loops
+
+for(i in 1:3) {
+  print ('Hi')
+}
+
+
+j<- 0
+for ( i in 1:3) {
+print (i)
+  j<- j+i
+}
+
+j<- 1
+for ( i in 1:3) {
+  print (i)
+  j<- j+i
+}
+j
+
+for (i in 1:3) {
+  txt <- paste('the square of', i, 'is', i*i)
+  print(txt)
+}
+
+for (i in 1:3){
+  txt <- paste ('a soma de', i, 'com si mesmo é', i+i)
+  print(txt)
+}
+
+
+s<- 0
+a <- 1:6
+b<- 6:1
+
+res<- vector (length=length(a))
+
+for (i in 1:length(b)){
+  s<- s+ a[i]
+  res[i]<- a[i]*b[i]
+}
+
+s
+res
