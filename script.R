@@ -1,2 +1,507 @@
-m <- (1:5)
+a<- 7
+class(a)
+a
+ainteger <- as.integer(a)
+class(ainteger)
+
+b <- c(1,25, 2.9, 3.0)
+class(b)
+
+d<- 5:9
+e<- 6:2
+
+e <- seq(from=1, to=17, by=2 )
+e
+
+f<- seq(from=17, to=1, by=-2)
+f
+
+g <- rep(10, times=4)
+g
+
+h<- rep(3:5, times=4)
+h<- rep(3:5, each=3)
+h
+
+w<- 'wong'
+y <- 'yi'
+class(c('w','y'))
+
+countries <- c('China', 'China', 'Japan', 'Sotuh Korea', 'Japan')
+class(countries)
+countries
+length (countries)
+nchar(countries)
+
+z<- letters
+z
+toupper(z)
+
+girl <- "Mary"
+Boy <- "John"
+paste(girl, "likes", Boy)
+
+glb<- paste(girl, "likes", Boy, collapse='-')
+glb
+paste(countries, collapse = '-')
+
+countries <- c('China', 'China', 'Japan', 'Sotuh Korea', 'Japan')
+C<- grep('i', countries)
+C
+i[C]
+
+d <- c('az20', 'az21', 'az22', 'ba30', 'ba31', 'ba32')
+i <- grep('b', d)
+i
+d[i]
+
+grep('2',d)
+grep('2$',d)
+grep('^b',d)
+
+z <- FALSE
+z
+Z <- c(0,2, TRUE, FALSE, FALSE)
+class(z)
+
+x <- 5
+x > 3
+
+y <- TRUE
+y + 1
+
+f1<- as.factor(countries)
+f1
+
+f2 <- c(5:7, 5:7, 5:7)
+f2
+f2<- as.factor(f2)
+f2
+as.integer(f2)
+f2
+
+fc2<- as.character(f2)
+fc2
+as.integer(fc2)
+
+
+m<- c(2, NA,5,2, NA, 2)
+m
+
+d1<- as.Date('2015-4-11')
+d1
+class(d1)
+d2<- as.Date('2015-3-11')
+d2
+d1-d2
+
+matrix(nrow=2, ncol=3)
+matrix(1:6, ncol=3, nrow=2)
+
+matrix(1:6, nrow= 2, ncol=3, byrow=TRUE)
+
+m<- matrix(1:6, ncol=3, nrow=2)
+
+a<- c(1,2,3)
+b<- 5:7
+
+m1 <- cbind(a,b)
+m2 <- rbind(a,b)
+
+m3<- cbind(b,b,a)
+m<- cbind(m1,m3)
+m
+
+nrow(m)
+ncol(m)
+
+colnames(m)
+m
+
+colnames(m)<- c('ID','X','Y','v1','v2')
+rownames (m)
+rownames(m)<- paste0('row_',1:nrow(m))
+
+#List
+
+list(1:3)
+
+e<- list(c(2,5),'abc')
+e
+names(e)<- c('first','last')
+e
+
+m<- matrix (1:6, ncol=3, nrow=2)
+f<- list(e, m, 'abc')
+f
+
+
+#DATA FRAMES
+
+ID<- as.integer(1:4)
+name<- c('Ana','Rob','Liu','Veronica')
+sex<- as.factor(c('F','M','M','F'))
+score <- c(10.2, 9, 13.5, 18)
+
+d<- data.frame(ID, name, sex,score, stringsAsFactors = FALSE)
+d
+class(d)
+length(d)
+
+is.list(d)
+names(d)
+
+nrow(d)
+ncol(d)
+dim(d)
+colnames(d)
+
+#4.INDEXING
+
+b<- 10:15
+b
+b[1]
+b[2]
+b[2:3]
+b[-2]
+b
+b[1]<-11
+b
+b[3:6]<- -99
+b
+b[1:3]<-2
+b
+b[3:6]<-c(10,20)
+b
+
+#4.1 - Matrix
+
+m <- matrix(1:9, nrow=3, ncol=3, byrow=TRUE)
+colnames(m)<- c('a','b','c')
+m
+m[2,2]
+m[1,3]
+m[1:3,1:2]
+m[2,]
+m[,2]
+m[,2, drop=FALSE]
+
+m[1,1]
+m[1,1] <- 5
+m
+m[3,]<-10
+m
+m[,2:3]<- 3:1
+m
+
+diag(m)
+diag(m)<-0
+m
+
+#4.2 - List
+
+m<- matrix(1:9, nrow = 3,ncol = 3,byrow = TRUE)
+m
+colnames(m)<- c('a','b','c')
+m
+e<- list(list(1:3),c('a','b','c','d'),m)
+e
+e[2]
+e[[2]]
+names(e)<- c('zzz','xyz','abc')
+e
+e$xyz
+e[['xyz']]
+
+#4.3 - Data.frame
+
+d<- data.frame(m)
+m
+class(m)
+d[,2]
+d[2]
+d[,'b']
+d[,'b', drop=FALSE]
+d$b
+d[['b']]
+d['b']
+d['c']
+
+#4.4 - Which, %in% and match
+
+x<- 10:20
+i<- which(x> 15)
+i
+x[i]
+
+b<- x>15
+b
+x
+x[b]
+
+j<- c(7,9,11,13)
+j
+j%in% x
+which(j%in%x)
+
+match (j,x)
+x
+j
+
+
+#5. Algebra
+
+a<- 1:5
+b<- 6:10
+
+d<- a * b
+a
+b
+d
+a*3
+
+1:6
+c(0,10)
+1:6+ c(0,10)
+
+a==2
+a[2]
+
+ff<- 5:2
+ff
+ff==2
+ff[2]
+
+a
+b
+b>6 & b<8
+which(b>6 & b<8)
+
+b>=9
+b<=2
+b>=9 | a<2
+
+a
+sqrt(a)
+1*2*3*4*5
+sd(a)
+prod(a)
+r <- runif(10)
+r
+sd(r)
+r2<- rnorm (10, mean = 10,sd=2)
+r2
+set.seed(12)
+runif(4)
+
+set.seed(12)
+runif(4)
+
+#5.2 - Matrices
+
+m<- matrix(1:6, ncol=3, nrow=2, byrow=TRUE)
+m
 m*2
+m^2
+m*1:2
+m*m
+t(m)
+m
+t(m)
+
+m %*% t(m)
+
+#7. Data Exploration
+
+d <- data.frame(id=1:10,
+                name=c('Bob', 'Bobby', '???', 'Bob', 'Bab', 'Jim', 'Jim', 'jim', '', 'Jim'),
+                score1=c(8, 10, 7, 9, 2, 5, 1, 6, 3, 4),
+                score2=c(3,4,5,-999,5,5,-999,2,3,4), stringsAsFactors=FALSE)
+d
+summary(d)
+
+# which values in score2 are -999?
+i<- d$score2==-999
+#set these to NA
+d$score2[i] <- NA
+
+#This can be done in one single line of code 
+d$score2[d$score2 == -999] <- NA
+
+d
+summary(d)
+
+d$name
+?unique
+unique(d$name)
+table(d$name)
+
+d$name [d$name == c("Bab", "Bobby")]<- "Bob"
+d$name <- toupper(d$name, 'jim')
+table(d)
+
+#get the first letters
+first<- substr(d$name,1,1)
+
+#get the remainder
+
+remainder<- substr(d$name,2, nchar (d$name))
+
+first<- toupper(first)
+first
+
+name<- paste0(first, remainder)
+name
+d$naem <- name
+table(d$name)
+
+d$name [d$name == c("???")]<- NA
+table(d$name)
+
+#to force the table to use NA
+
+?table()
+table(d$name, useNA = "ifany")
+
+#Contigency table of two tables
+
+table(d[c('name', 'score2')])
+
+#Quantile, Range and mean
+
+quantile(d$score1)
+range(d$score1)
+mean(d$score1)
+
+quantile(d$score2)
+quantile(d$score2, na.rm = TRUE)
+range(d$score2, na.rm=TRUE)
+mean(d$score2, na.rm = TRUE)
+
+#Simple plotting in Data Exploration
+
+par(mfrow=c(2,2)) # para combinar os varios plots numa forma de 4.
+plot(d$score1, d$score2)
+boxplot(d[, c('score1', 'score2')])
+plot(sort(d$score1))
+hist(d$score2)
+
+
+#8. Functions
+nrow
+ncol
+
+#Write first function
+
+f<- function() {
+  return('Hello')}
+f
+?return
+
+f<- function(name) {
+  x<- paste('hello',name)
+  return(x)
+}
+
+f("John")
+
+f<- function(name) {paste('hello',name)}
+f("John")
+
+
+frs<- function(n){
+  s<- sample(letters, n, replace=TRUE)
+  r<- paste0(s, collapse = '')
+  return(r)
+}
+frs(2)
+set.seed(0)
+frs(2)
+
+sumsquare <- function (a,b){
+  d<- a+b
+  dd<- d*d
+  return(dd)
+}
+
+sumsquare (1,2)
+
+x<- 1:3
+y<- 5
+
+sumsquare(x,y)
+
+sumsquare (a=1, b=2)
+sumsquare(a=1, d=2)
+sumsquare(1:5)
+
+sumsquareD <- function(a=0, b=1) {
+  d <- a + b
+  dd <- d * d
+  return(dd)
+}
+
+sumsquareD(1:5,2)
+sumsquareD(b=5)
+
+nunique <- function(x){
+  length(unique(x))
+}
+
+data<- c('a','b','a','c','b')
+nunique(data)
+nunique (countries)
+
+
+#Ellipses
+
+f1<- function(x,y=10){
+  x*y
+}
+
+f2<- function(x,...){
+  f1(x,...)
+}
+
+f2(5)
+
+
+#9. APPLY
+
+m<- matrix(1:15, nrow=5, ncol = 3)
+m
+m*2
+m^2
+apply(m,1,sum)
+apply(m,2,sum)
+
+apply(m,2,mean)
+
+#9.2- TAPPLY
+m
+colnames(m)<- c('v1','v2','v3')
+d<- data.frame(name=c('Yi','Yi','Yi','Er','Er'),m,stringsAsFactors = FALSE)
+d$v2[1]<- NA
+d
+
+#-compute de average value of v1,v2 and v3 for each individual - TAPPLY
+
+tapply(d$v1, d$name, mean)
+tapply(d$v1, d$name, max)
+tapply(d$v2, d$name, mean)
+tapply(d$v2, d$name, mean,na.rm=TRUE)
+
+#Aggregate
+d
+aggregate(d[,c('v1','v2','v3')], d$name, mean, na.rma=TRUE)
+
+#to fix
+aggregate(d[,c('v1','v2','v3')], d[,'name', drop=FALSE], mean, na.rma=TRUE)
+#or
+aggregate(d[,c('v1','v2','v3')], list(d$name), mean,na.rm=TRUE)
+
+names<- list('Antoinette', 'Mary','Duncan','Obalaya','Jojo')
+?nchar
+nchar('Jim')
+nchar('Bob')
+lapply(names,nchar)
