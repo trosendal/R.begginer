@@ -41,8 +41,16 @@ girl <- "Mary"
 Boy <- "John"
 paste(girl, "likes", Boy)
 
-## Why does the following not return: "Mary-likes-John"? How could you
-## change it to return "Mary-likes-John?"
+## Why does the following not return: "Mary-likes-John"? 
+#  I think because in the paste function, the sep argument comes as default " "
+
+#How could you change it to return "Mary-likes-John?"
+
+paste(girl, "likes", Boy, sep = "-")
+
+
+##
+
 glb<- paste(girl, "likes", Boy, collapse='-')
 glb
 paste(countries, collapse = '-')
@@ -74,6 +82,15 @@ y + 1
 
 ## How could you return c(1, 3, 5, 7, 9) from?:
 a <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+b<- c(1,3,5,7,9)
+c <- match(b,a)
+c
+
+#OR (both I search it on web)
+
+a[!(a %% 2 == 0)]
+a[which(a %% 2!= 0)]
+
 
 ##
 f1<- as.factor(countries)
