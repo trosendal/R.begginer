@@ -576,3 +576,86 @@ for (i in 1:length(b)){
 
 s
 res
+
+
+#10.1.2 - break and next
+
+for (i in 1:10) {
+  if (i%in% c(1,3,5,7)) {
+    next
+    
+  }
+  if(i>8){
+    break
+  }
+  print(i)
+}
+
+#10.1.3 - While loops
+
+i<- 0
+while (i<4) {
+  print (paste(i, 'and counting...'))
+  i<- i+1
+}
+
+set.seed (1)
+i<- 0
+while(i<0.5){
+  i<- runif (1)
+  print(i)
+}
+
+?runif
+
+
+set.seed(1)
+while(TRUE) {
+  i <- runif(1)
+  print(i)
+  if (i > 0.5) {
+    break
+  }
+}
+
+#10.2 - Branching
+
+x<- 5
+y<-10
+
+if (x== 5) {
+  y<- 15
+}
+
+if ( x > 20 ) {
+  y<- y+2
+} else if (x > 5 & x< 10){
+  y<- y-1
+} else {
+  y<- x
+}
+
+y
+
+
+b<- TRUE
+
+if (b== TRUE){
+  print ('Hello')
+}
+
+
+#Combining for loop with an if/else branch
+
+a <- 1:5
+f<- vector (length = length(a))
+
+for (i in 1: length(a)) {
+  if (a[i]> 2) {
+    f[i]<- a[i]/2
+    } else {
+      f[i]<- a[i]*2
+    }
+  }
+
+f
