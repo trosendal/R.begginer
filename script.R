@@ -52,6 +52,31 @@ paste(girl, "likes", Boy, sep = "-")
 ##
 
 glb<- paste(girl, "likes", Boy, collapse='-')
+
+## Have a look a the help for paste() and you'll notice that the 'sep'
+## argument and 'collapse' has different results. For example:
+
+paste("1", "2", "3", "apple", "orange", "banana", sep = "-")
+
+paste("1", "2", "3", "apple", "orange", "banana", collapse = "-")
+
+paste(c("1", "2", "3"), c("apple", "orange", "banana"), sep = "-")
+
+paste(c("1", "2", "3"), c("apple", "orange", "banana"), sep = "-", collapse = ":")
+
+## Note what happens in the following examples when two vectors of different length
+
+paste(c("1", "2", "3"), c("apple"), sep = "-")
+
+paste(c("1", "2", "3"), c("apple", "orange"), sep = "-")
+
+## So you could also solve the previous in two ways:
+
+paste(girl, "likes", Boy, sep = "-")
+##OR
+paste(c(girl, "likes", Boy), collapse = "-")
+
+
 glb
 paste(countries, collapse = '-')
 
@@ -85,14 +110,40 @@ a <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 b<- c(1,3,5,7,9)
 c <- match(b,a)
 c
+## Nice :) You may think that this is returning in 'c' the values from
+## the first vector 'a'. But in fact what you have returned are the
+## indexes of the matching locations in a that the elements in b are
+## found. Here is an example that makes it clear:
+a <- c("a", "b", "c", "d", "e", "f", "g", "h", "i")
+b <- c("a", "b", "c", "d", "e")
+c <- match(b, a)
+c ## So these are the positions (indexes) of b in a To get the values you do:
+a[c]
 
-#OR (both I search it on web)
+## OR (both I search it on web)
 
+a <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 a[!(a %% 2 == 0)]
 a[which(a %% 2!= 0)]
 
+## So you first take a modulo 2  
+a %% 2
+## Then check if these are 0
+a %% 2 == 0
+## Then invert the TRUES and FALSES
+!(a %% 2 == 0)
+## Then use this vector to select elements from the first
+a[!(a %% 2 == 0)]
+##The second solution uses the 'which' function. It returns the
+##indexes in the vector that are TRUE like this:
+which(c(TRUE, FALSE, TRUE, FALSE, TRUE))
+## In this case I would have dolved it like this:
+a[c(TRUE, FALSE)]
+## Note the indexing vector: c(TRUE, FALSE) is shorter than 'a' but it
+## is repeated to the end of the first vector. The following could be
+## used to select one value, skip two and then repeat
+a[c(TRUE, FALSE, FALSE)]
 
-##
 f1<- as.factor(countries)
 f1
 
