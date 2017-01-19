@@ -659,3 +659,139 @@ for (i in 1: length(a)) {
   }
 
 f
+
+#11 - Data Preparation
+
+##11.1 - Wide to long
+
+dd<- read.csv('http://www.ats.ucla.edu/stat/r/faq/hsb2.csv')
+d <- dd[1:3, c(1:2, 8:9)]
+d
+
+wvars <- c("write", "math")
+
+x <- reshape(d, varying=wvars, v.names="score", direction = "long")
+x
+
+x<- reshape(d, varying=wvars, v.names="score", times =wvars, timevar = "subject", direction= "long")
+x
+
+##11.2 - Long to wide
+
+w<- reshape(x, idvar = c("id", "female"), timevar= "subject", direction = "wide")
+w
+
+cn<- colnames(w)
+cn<- gsub("score", "", cn)
+colnames(w) <-cn
+w
+
+##11.3 -Merge
+
+a<- dd[,1:3]
+
+set.seed(1)
+b<- dd[sample(nrow(dd),100), c(1, 7:10)]
+b
+
+dim(a)
+head(a)
+table(a$female)
+table(a$race)
+
+dim(b)
+head(b)
+
+ab<- merge(a,b,by= 'id')
+ab
+head(ab)
+
+dim(ab)
+
+ab<- merge(a, b, by='id', all.x = TRUE)
+ab
+dim(ab)
+head(ab)
+
+merge(a[1:3,], b[1:3,], by='id')
+merge(a[1:3,], b[1:3,], by='id', all.x = T)
+merge(a[1:3,], b[1:3,], by='id', all.y = T)
+merge(a[1:3,], b[1:3,], by='id', all = T)
+
+tapply(ab$read, ab$female, mean, na.rm=TRUE)
+tapply(ab$read, ab$race, mean, na.rm=TRUE)
+
+#11.4 - Sort
+
+x<- sample(10)
+x
+sort(x)
+i<- order(x)
+i
+x[i]
+
+
+set.seed(0)
+x<- a[sample(nrow(a),10),]
+x
+oid<- order(x$id)
+y<- x[oid,]
+y
+
+oid<- order(x$race, x$female, x$id)
+x[oid,]
+
+#12 - Graphics
+
+data(cars)
+head(cars)
+plot(cars)
+plot(cars$dist)
+plot(cars$speed)
+plot( sort(cars$speed))
+
+plot( cars[,1], cars[,2])
+cars[,1]
+plot(cars [,1], cars[,2], xlab= 'Speed of cars(miles/hr)', ylab= 'Stopping distance(feet)')
+plot(cars [,1], cars[,2], xlab= 'Speed of cars(miles/hr)', ylab= 'Stopping distance(feet)', pch=20, cex=2, col='red')
+
+plot(cars, xlab='Speed', ylab= 'Time', pch=20, cex= 2, col= 'red', xlim= c(0,25), las=1)
+
+plot(cars, xlab='Speed', ylab='', pch=20, cex=2, col='red', xlim = c(0,27), ylim=c(0,125), axes=FALSE, xaxs="i", yaxs="i")
+axis(1)
+axis(2, las=1)
+text(5,100, 'cars!', cex=2, col= 'blue')
+par(xpd=NA)
+text (-1,133, 'Distance\n(feet)')
+
+set.seed(0)
+brands<- c('Buick', 'Chevrolet', 'Ford')
+b<- sample(brands, nrow(cars), replace=TRUE)
+i<- match(b, brands)
+i
+plot(cars, pch=i+1, cex=i, col=rainbow(3)[i])
+j<- 1:length(brands)
+legend(5,120, brands,pch=(j+1), pt.cex=j, col=rainbow(3), cex=1.5)
+
+par(mfrow=c(2,2), mar=c(1.3, 1.5,1.5))
+for (i in 1:4){
+  plot(sample(cars[,1]), sample(cars[,2]),xlab='', ylab='', las=1)
+}
+
+#12.1 - Some other base plots
+
+head(InsectSprays)
+hist(InsectSprays[,1])
+InsectSprays[,1]
+print(InsectSprays)
+
+x<- agggregate(InsectSprays[,1, drop=F], InsectSprays[,2, drop=F], sum)
+barplot(x[,2], names=x[,1], horiz = T, las=1)
+
+x <- aggregate(InsectSprays[,1,drop=F], InsectSprays[,2,drop=F], sum)
+barplot(x[,2], names=x[,1], horiz=T, las=1)
+
+boxplot(count ~ spray, data= InsectSprays, col = "lightgray")
+
+#13. Statistical models
+
